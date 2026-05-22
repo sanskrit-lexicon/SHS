@@ -1,0 +1,51 @@
+### Location
+
+Counterpart of https://github.com/sanskrit-lexicon/PWG/issues/175 (PWG) and https://github.com/sanskrit-lexicon/PWK/issues/113 (PWK) for `shs.txt`.
+
+I ran the same two-job recipe over `csl-orig/v02/shs/shs.txt`: auto-fix the few things with a single safe resolution; audit everything else with line refs. Added `08_markup_fix.py` plus outputs to a new `shsissues/markup_fix/` folder on the branch `markup-fix-audit`.
+
+@funderburkjim @Andhrabharati — please review the findings listed below.
+
+## Markup fixer + audit for `shs.txt`
+
+### What it auto-fixes
+
+| Pattern | Result |
+|---|---|
+| `<ab><ab>X</ab> Y</ab>` | `<ab>X Y</ab>` |
+| `<Poem> word </Poem>` | `<Poem>word</Poem>` |
+| `<s> word </s>` | `<s>word</s>` |
+
+Whitespace trimming applies to all 2 paired tag(s) in `shs.txt`: `<Poem>`, `<s>`. The original file is never modified — output goes to `shs_fixed.txt`, with the full diff in `markup_fix_changes.txt` (updateByLine format). **Output is byte-identical to source** (no auto-fixes triggered).
+
+### Closing-tag inventory in current `shs.txt`
+
+| Tag | Count |
+|---|---:|
+| `</Poem>` | 10 |
+| `</s>` | 1 |
+
+### What it found in current `shs.txt`
+
+- 0 whitespace trims — byte-identical to source.
+- 0 adjacent `</ab> <ab>` — no `<ab>` tag in shs.txt.
+- 0 `<ab n="…">` attributes.
+- 2 correction records present.
+
+### Usage
+
+```
+cd shsissues/markup_fix
+python 08_markup_fix.py                        # uses csl-orig/v02/shs/shs.txt by default
+python 08_markup_fix.py IN.txt OUT.txt         # custom paths
+```
+
+Outputs: `shs_fixed.txt`, `markup_fix_changes.txt`, `markup_audit.txt`.
+
+### Summary
+
+Only <Poem> and <s> paired tags; essentially clean.
+
+### Severity
+
+`minor`
