@@ -1,0 +1,72 @@
+LIST OF ABBREVIATIONS.
+
+Abl.	 Ablative.
+Adj.	 Adjective.
+Adv.	 Adverb.
+Aff.	 Affix.
+Arith.	 Arithmetic.
+Atm.	 Atmanepada.
+Aug.	 Augment.
+Caus.	 Causal.
+C. f.	 Compare.
+Cl.	 Class.
+Compar.	 Comparative.
+Dat.	 Dative.
+Deriv.	 Derivation.
+Desid.	 Desiderative.
+Du.	 Dual.
+E.	 Etymology.
+E. g.	 (Exempli gratia.) For example.
+F. or fem.	 Feminine.
+Fig.	 Figurative or figuratively.
+Gen.	 Genitive.
+Gram.	 Grammar.
+I. e.	 (Id est.) That is.
+Ind.	 Indeclinable.
+Irr.	 Irregular.
+Lit.	 Literal or literally.
+Loc.	 Locative.
+M.	 Masculine.
+Math.	 Mathematics.
+N.	 Neuter.
+Neg.	 Negative.
+Op.	 Opposed.
+Par.	 Parasmaipada.
+Pen.	 Penultimate.
+Phil.	 Philosophy.
+Plu.	 Plural.
+Poss.	 Possessive.
+Priv.	 Priveative.
+Pron.	 Pronoun.
+Q. v.	 (Quod vide.) Which see.
+R.	 Root.
+Reg.	 Regular.
+Subst.	 Substantive.
+Super.	 Superlative.
+V.	 Verb.
+-----------------------------------------
+{#sANketikAH SabdAH .#}
+
+{#saNketaH .#}	{#saNketaboDyaH .#}
++	 {#prAtipadikam#}
+-	 {#DAtuH#}
+{#niH#}	 {#nipAtanAt#}
+{#BvAdi˚#}	 {#BvAdigaRIyaH#}
+{#adA˚#}	 {#adAdigaRIyaH#}
+{#jiho˚#}	 {#juhotyAdigaRIyaH#}
+{#divA˚#}	 {#divAdigaRIyaH#}
+{#svAdi˚#}	 {#svAdigaRIyaH#}
+{#tudA˚#}	 {#tudAdigaRIyaH#}
+{#rudA˚#}	 {#ruDAdigaRIyaH#}
+{#tanA˚#}	 {#tanAdigaRIyaH#}
+{#kryAdi˚#}	 {#kryAdigaRIyaH#}
+{#curA˚#}	 {#curAdigaRIyaH#}
+{#ad˚#}	 {#adantaH#}
+{#para˚#}	 {#parasmEpadI#}
+{#Atma˚#}	 {#AtmanepadI#}
+{#uBa˚#}	 {#uBayapadI#}
+{#saka˚#}	 {#sakarmakaH#}
+{#aka˚#}	 {#akarmakaH#}
+{#dvika˚#}	 {#dvikarmakaH#}
+{#gOrA˚#}	 {#gOrAditvAt#}
+{#pfzo˚#}.	 {#pfzodrAditvAt#}
