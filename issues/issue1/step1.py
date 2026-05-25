@@ -17,12 +17,13 @@ def process_file(input_path, output_path):
         i += 1
 
 
-    lextags_with_paren = ['mfn\\.', 'mn\\.', 'mf\\.', 'nf\\.', 'adv\\.', 'subst\\.', 'adj\\.', 'sub\\.', 'pron\\.',
+    lextags_with_paren = ['mfn\\.', 'mn\\.', 'mf\\.', 'nf\\.', 'adv\\.', 'subst\\.', 'adj\\.', 'Adj\\.', 'sub\\.', 'pron\\.',
                'm\\.', 'f\\.', 'n\\.', 'ind\\.', 'Ind\\.']
     tag_pattern = re.compile(r'((?:' + '|'.join(lextags_with_paren) + r'))\s*(\({#.*?#}\))')
 
-    lextags_standalone = ['mfn\\.', 'mn\\.', 'mf\\.', 'nf\\.', 'adv\\.', 'subst\\.', 'adj\\.', 'sub\\.', 'pron\\.',
+    lextags_standalone = ['mfn\\.', 'mn\\.', 'mf\\.', 'nf\\.', 'adv\\.', 'subst\\.', 'adj\\.', 'Adj\\.', 'sub\\.', 'pron\\.',
                'm\\.', 'f\\.', 'n\\.', 'ind\\.', 'Ind\\.', 'r\\.', 'fn\\.', 'Subst\\.', 'subst\\.']
+
 
     standalone_pattern = re.compile(r'(?:^|(?<=\s)|(?<=¦))(' + '|'.join(lextags_standalone) + r')(?=\s|$)')
 
@@ -140,13 +141,13 @@ def process_file(input_path, output_path):
         # Do not merge if the previous line contains <L> or is a closing LEND tag
         if prev_line.strip().startswith('<L>') or prev_line.strip().startswith('<LEND>'):
             return True
-        # Do not merge if prev_line is '¦' itself. But in flat_lines, '¦' starts with '<lex>' or text inside output_lines split logic.
-        # However, let's keep ¦ and subsequent lex tags merged together.
+        # Do not merge if prev_line is '¦' itself. Keep it on its own line
+        # unless followed by a <lex> tag (handled by the second condition below).
         if prev_line.strip() == '¦':
-            return False
+            return True
         return (prev_line.rstrip().endswith(')') or
                 prev_line.rstrip().endswith('</lex>') or
-                prev_line.rstrip().endswith('</ab>'))
+                prev_line.strip() == '<ab>E.</ab>')
 
     for i, line in enumerate(flat_lines):
         if i > 0 and not starts_new_block(line) and not should_not_merge(line, final_lines[-1]):
@@ -156,6 +157,12 @@ def process_file(input_path, output_path):
         elif i > 0 and line.startswith('<lex>') and final_lines[-1] == '¦':
             # Explicitly merge lex tag with a leading '¦' line
             final_lines[-1] = final_lines[-1] + ' ' + line
+        elif line.startswith('¦') and not line.startswith('¦ <'):
+            # '¦' followed by plain text (no XML tag) → split onto separate lines
+            final_lines.append('¦')
+            rest = line[1:].strip()
+            if rest:
+                final_lines.append(rest)
         else:
             final_lines.append(line)
 
