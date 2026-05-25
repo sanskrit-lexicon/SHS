@@ -232,6 +232,20 @@ def process_file(input_path, output_path):
             else:
                 split_lines.append(part)
 
+    # Merge standalone {#...} etymology lines with following tag content
+    merged = []
+    skip_next = False
+    for i, line in enumerate(split_lines):
+        if skip_next:
+            skip_next = False
+            continue
+        if re.match(r'^\{#.*\}$', line.strip()) and i + 1 < len(split_lines) and split_lines[i + 1].strip().startswith(('<ab>', '<lex>')):
+            merged.append(line + ' ' + split_lines[i + 1].strip())
+            skip_next = True
+        else:
+            merged.append(line)
+    split_lines = merged
+
     # Fix commas and missing periods on non-structural lines
     for i, line in enumerate(split_lines):
         if line.endswith('.'):
@@ -242,7 +256,6 @@ def process_file(input_path, output_path):
             continue
         if line.endswith(','):
             split_lines[i] = line[:-1] + '.'
-        # Lines ending with letters add period
         elif line[-1].isalpha():
             split_lines[i] = line + '.'
 
