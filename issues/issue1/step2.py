@@ -23,6 +23,12 @@ def process_file(input_path, output_path):
     # Remove leading spaces
     final_text = re.sub(r'(?m)^[ ]+', '', final_text)
 
+    # Swap punctuation out of closing tags (specifically handling periods, commas, or danda '।' which maps to period '.')
+    final_text = re.sub(r'([,.])%\}', r'%}\1', final_text)
+    final_text = re.sub(r'([,.])#\}', r'#}\1', final_text)
+    final_text = re.sub(r'।%\}', r'%}.', final_text)
+    final_text = re.sub(r'।#\}', r'#}.', final_text)
+
     with open(output_path, 'w', encoding='utf-8') as f:
         f.write(final_text + '\n')
 
