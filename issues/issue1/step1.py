@@ -138,11 +138,8 @@ def process_file(input_path, output_path):
                 line.startswith('.²'))
 
     def should_not_merge(line, prev_line):
-        # Do not merge if the previous line contains <L> or is a closing LEND tag
         if prev_line.strip().startswith('<L>') or prev_line.strip().startswith('<LEND>'):
             return True
-        # Do not merge if prev_line is '¦' itself. Keep it on its own line
-        # unless followed by a <lex> tag (handled by the second condition below).
         if prev_line.strip() == '¦':
             return True
         return (prev_line.rstrip().endswith(')') or
@@ -156,6 +153,12 @@ def process_file(input_path, output_path):
             final_lines[-1] = final_lines[-1] + ' ' + line
         elif i > 0 and line.startswith('<lex>') and final_lines[-1] == '¦':
             # Explicitly merge lex tag with a leading '¦' line
+            final_lines[-1] = final_lines[-1] + ' ' + line
+        elif i > 0 and line.strip().startswith(('<lex>', '<ab>')) and line.strip() != '<ab>E.</ab>' and final_lines[-1].strip().startswith('¦ '):
+            # Merge tag continuations after grammatical info ¦ <lex>...</lex> ({#...#})
+            final_lines[-1] = final_lines[-1] + ' ' + line
+        elif i > 0 and line.strip().startswith('<ab>') and line.strip() != '<ab>E.</ab>' and final_lines[-1].rstrip().endswith('</lex>'):
+            # Merge abbreviation tag with previous lex tag
             final_lines[-1] = final_lines[-1] + ' ' + line
         elif line.startswith('¦') and not line.startswith('¦ <'):
             # '¦' followed by plain text (no XML tag) → split onto separate lines
