@@ -215,7 +215,11 @@ def process_file(input_path, output_path):
     # 5. Convert standard ASCII single quote (') to modifier apostrophe (ʼ)
     final_text = final_text.replace("'", "ʼ")
 
+    # 6. Convert '.)' to ').'
+    final_text = final_text.replace('.)', ').')
+
     with open(output_path, 'w', encoding='utf-8') as f:
+
         f.write(final_text + '\n')
 
 if __name__ == '__main__':
