@@ -41,9 +41,9 @@ def process_file(input_path, output_path):
         else:
             temp_lines.append(r_sub)
 
-    ab_tags = ['passive v.', 'plur.', 'viz.', 'prep.', 'plu.', '&c.', 'neut.', 'mas.', 'privat.', 'nom. v.', 'penult.', 'sing.', 'du.', 'pl.', 'part.', 'fem.', 'pre.', 'desider.', 'antepen.', 'pers.', 'caus.', 'pen.', 'acc.', 'desid.', 'superl.', 'dim.', 'gen.', 'causal v.', 'priv.', 'frequent.', 'past.', 'Sing.', 'aff.', 'der.', 'fig.', 'deriv.', 'patron.', 'E.', 'affs.', 'irr.', 'liter.', 'N. W.', 'reg.', 'desid. v.', 'lit.', 'nominal v.', 'met.', 'ff.', 'dat.', 'abl.', 'augm.', 'N. E.', 'intensitive v.', 'accu.', 'dimin.', 'a.', 'aug.', 'q. v.', 'S. W.', 'redup.', 'S. E.', 'ut sup.', 'form.', 'do.', 'possess.', 'var.', 'redup. v.', 'poss.', 'posses.', 'ante-pen.', 'S. W. ', 'cent.', 'masc.', 'comp.', 'neg.', 'pass.', 'pref.', 'cl.', 'Mss.', 'MSS', 'fut.', 'metaph.', 'oz.', 'lbs.', 'affir.', 'intens.', 'inten.', 'reiter. v.', 'abst.', 'freq. v.', 'pass. v.', 'cls.', 'pos.', 'Ex.', 'vulg.', 'i. e.', 'intens. v.', 'frequent. v.', 'reit. v.', 'super.', 'nom.', 'infin.', 'A. D.']
+    ab_tags = ['intensitive v.', 'Aptote noun.', 'frequent. v.', 'intents. v.', 'passive v.', 'nominal v.', 'reiter. v.', 'intens. v.', 'causal v.', 'desid. v.', 'v. redup.', 'pass. v.', 'reit. v.', 'freq. v.', 'adverb.', 'aptote.', 'deprec.', 'nom. v.', 'Aptote.', 'metaph.', 'ut sup.', 'ut inf.', 'desid.', 'liter.', 'deriv.', 'Desid.', 'e. g.', 'N. W.', 'q. v.', 'A. D.', 'plur.', 'N. E.', 'S. W.', 'inst.', 'caus.', 'Sept.', 'Plur.', 'i. e.', 'comp.', 'priv.', 'pass.', 'sing.', 'affs.', 'Caus.', 'avds.', 'Sing.', 'Phil.', 'Accu.', 'pres.', 'masc.', 'S. E.', 'Plu.', 'Mss.', 'etc.', 'abl.', 'loc.', 'rep.', 'lit.', 'viz.', 'Dec.', 'dat.', 'mas.', 'Nov.', 'dim.', 'der.', 'Atm.', 'Oct.', 'nom.', 'aug.', 'neg.', 'fig.', 'gen.', 'grs.', 'fem.', 'cls.', 'Jan.', 'int.', 'aff.', 'Par.', 'plu.', 'voc.', 'acc.', 'reg.', 'irr.', 'inf.', 'op.', 'pl.', 'du.', 'Pl.', 'Du.', 'cl.', '&c.', 'pp.', 'Ex.', 'M.', 'E.']
     ab_tags.sort(key=len, reverse=True)
-    ab_pattern = re.compile(r'(^|\s)(' + '|'.join(re.escape(tag) for tag in ab_tags) + r')(?=\s|$|[,;\.])')
+    ab_pattern = re.compile(r'(?:^|(?<=[\s(]))(' + '|'.join(re.escape(tag) for tag in ab_tags) + r')(?=[\s,;.)]|$|[,;\.])')
 
     input_dir = os.path.dirname(input_path)
     
@@ -76,7 +76,7 @@ def process_file(input_path, output_path):
         result = result.replace('.E.', '\n<ab>E.</ab>\n')
 
         # Apply <ab> tags using the single compiled regex
-        result = ab_pattern.sub(r'\1<ab>\2</ab>', result)
+        result = ab_pattern.sub(r'<ab>\g<1></ab>', result)
         
         # Apply <bot> and <zoo> tags (only if the tag files were present)
         if bot_pattern is not None:
@@ -199,6 +199,9 @@ def process_file(input_path, output_path):
     # 4. Swap punctuation out of closing tags
     final_text = re.sub(r'([,.])%\}', r'%}\1', final_text)
     final_text = re.sub(r'([,.])#\}', r'#}\1', final_text)
+
+    # 5. Convert standard ASCII single quote (') to modifier apostrophe (ʼ)
+    final_text = final_text.replace("'", "ʼ")
 
     with open(output_path, 'w', encoding='utf-8') as f:
         f.write(final_text + '\n')
