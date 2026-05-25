@@ -189,7 +189,15 @@ def process_file(input_path, output_path):
         # 2. Split on "[.;] With {#" / "[.;] with {#" onto new lines
         temp = []
         for c in candidates:
-            temp.extend(re.split(r'(?<=[.;])\s+(?=[Ww]ith\s+\{)', c))
+            parts = re.split(r'(?<=[.;])\s+(?=[Ww]ith\s+\{)', c)
+            # Don't split bare numbered sense like "3. With {#...#}"
+            filtered = []
+            for p in parts:
+                if filtered and re.match(r'^\d+\.\s*$', filtered[-1].strip()):
+                    filtered[-1] = filtered[-1] + ' ' + p
+                else:
+                    filtered.append(p)
+            temp.extend(filtered)
         candidates = [c.strip() for c in temp if c.strip()]
 
         # 3. For With clause headers, split at first ", " to separate header from action text
