@@ -232,6 +232,20 @@ def process_file(input_path, output_path):
             else:
                 split_lines.append(part)
 
+    # Fix commas and missing periods on non-structural lines
+    for i, line in enumerate(split_lines):
+        if line.endswith('.'):
+            continue
+        if line.startswith(('<', '¦', '(', '{')):
+            continue
+        if re.match(r'^With\s', line) and '{#' in line:
+            continue
+        if line.endswith(','):
+            split_lines[i] = line[:-1] + '.'
+        # Lines ending with letters add period
+        elif line[-1].isalpha():
+            split_lines[i] = line + '.'
+
     final_text = '\n'.join(split_lines)
 
     # 1. Remove leading spaces
