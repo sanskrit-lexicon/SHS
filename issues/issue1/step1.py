@@ -3,7 +3,19 @@ import os
 
 def process_file(input_path, output_path):
     with open(input_path, 'r', encoding='utf-8') as f:
-        lines = [line.rstrip('\n') for line in f.readlines() if line.strip()]
+        raw_lines = [line.rstrip('\n') for line in f.readlines() if line.strip()]
+
+    lines = []
+    i = 0
+    while i < len(raw_lines):
+        line = raw_lines[i]
+        while line.endswith('-') and i + 1 < len(raw_lines):
+            next_line = raw_lines[i+1].lstrip()
+            line = line[:-1] + next_line
+            i += 1
+        lines.append(line)
+        i += 1
+
 
     lextags_with_paren = ['mfn\\.', 'mn\\.', 'mf\\.', 'nf\\.', 'adv\\.', 'subst\\.', 'adj\\.', 'sub\\.', 'pron\\.',
                'm\\.', 'f\\.', 'n\\.', 'ind\\.']
