@@ -18,11 +18,12 @@ def process_file(input_path, output_path):
 
 
     lextags_with_paren = ['mfn\\.', 'mn\\.', 'mf\\.', 'nf\\.', 'adv\\.', 'subst\\.', 'adj\\.', 'sub\\.', 'pron\\.',
-               'm\\.', 'f\\.', 'n\\.', 'ind\\.']
+               'm\\.', 'f\\.', 'n\\.', 'ind\\.', 'Ind\\.']
     tag_pattern = re.compile(r'((?:' + '|'.join(lextags_with_paren) + r'))\s*(\({#.*?#}\))')
 
     lextags_standalone = ['mfn\\.', 'mn\\.', 'mf\\.', 'nf\\.', 'adv\\.', 'subst\\.', 'adj\\.', 'sub\\.', 'pron\\.',
-               'm\\.', 'f\\.', 'n\\.', 'ind\\.', 'r\\.', 'fn\\.', 'Subst\\.', 'subst\\.']
+               'm\\.', 'f\\.', 'n\\.', 'ind\\.', 'Ind\\.', 'r\\.', 'fn\\.', 'Subst\\.', 'subst\\.']
+
     standalone_pattern = re.compile(r'(?:^|(?<=\s)|(?<=¦))(' + '|'.join(lextags_standalone) + r')(?=\s|$)')
 
     # Split at '¦', putting '¦' at the beginning of the next line (with a space before the lex tag or text, as per expected output: "¦ <lex>m.</lex> ({#-SaH#})")
