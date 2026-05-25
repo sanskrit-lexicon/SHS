@@ -33,6 +33,17 @@ def process_file(input_path, output_path):
     final_text = final_text.replace('.).', ').')
     final_text = final_text.replace('.)', ').')
 
+    # (4) Split numbered senses onto separate lines
+    lines = final_text.split('\n')
+    split_lines = []
+    for line in lines:
+        if line.strip().startswith(('<L>', '<LEND>', '<ab>', '<lex>')):
+            split_lines.append(line)
+        else:
+            parts = re.split(r'\s+(?=\d+\.)', line)
+            split_lines.extend(p.strip() for p in parts if p.strip())
+    final_text = '\n'.join(split_lines)
+
     with open(output_path, 'w', encoding='utf-8') as f:
 
 

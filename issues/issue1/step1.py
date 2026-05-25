@@ -173,15 +173,40 @@ def process_file(input_path, output_path):
         if line.startswith('<L>') or line.startswith('<LEND>'):
             split_lines.append(line)
             continue
-        
-        # Split numbered senses that are inline (e.g., "1. foo 2. bar" -> "1. foo", "2. bar")
-        # We find instances of " \d+\. " (with a space before, and a number and dot)
-        parts = re.split(r'\s+(?=\d+\.)', line)
-        for part in parts:
-            part = part.strip()
-            if not part:
-                continue
-            # Also handle any mid-line etymology .E. or <ab>E.</ab>
+
+        # Collect all candidate parts from the line through successive splits
+        candidates = [line]
+
+        # 1. Split numbered senses (e.g., "1. foo 2. bar" -> "1. foo", "2. bar")
+        temp = []
+        for c in candidates:
+            temp.extend(re.split(r'\s+(?=\d+\.)', c))
+        candidates = [c.strip() for c in temp if c.strip()]
+
+        # 2. Split on "[.;] With {#" / "[.;] with {#" onto new lines
+        temp = []
+        for c in candidates:
+            temp.extend(re.split(r'(?<=[.;])\s+(?=[Ww]ith\s+\{)', c))
+        candidates = [c.strip() for c in temp if c.strip()]
+
+        # 3. For With clause headers, split at first ", " to separate header from action text
+        temp = []
+        for c in candidates:
+            if re.match(r'^[Ww]ith\s+\{#', c):
+                idx = c.find(', ')
+                if idx >= 0:
+                    temp.append(c[:idx+1])
+                    rest = c[idx+2:].strip()
+                    if rest:
+                        temp.append(rest)
+                else:
+                    temp.append(c)
+            else:
+                temp.append(c)
+        candidates = [c.strip() for c in temp if c.strip()]
+
+        # 4. Handle <ab>E.</ab> splitting within each candidate
+        for part in candidates:
             if '<ab>E.</ab>' in part:
                 if part.startswith('<ab>E.</ab>'):
                     split_lines.append('<ab>E.</ab>')
@@ -189,18 +214,18 @@ def process_file(input_path, output_path):
                     if after_e:
                         split_lines.append(after_e)
                 else:
-                    subparts = re.split(r'\s*(?=<ab>E\.</ab>)', part)
-                    for sp in subparts:
-                        sp = sp.strip()
-                        if sp == '<ab>E.</ab>':
-                            split_lines.append(sp)
-                        elif sp.startswith('<ab>E.</ab>'):
+                    e_parts = re.split(r'\s*(?=<ab>E\.</ab>)', part)
+                    for ep in e_parts:
+                        ep = ep.strip()
+                        if ep == '<ab>E.</ab>':
+                            split_lines.append(ep)
+                        elif ep.startswith('<ab>E.</ab>'):
                             split_lines.append('<ab>E.</ab>')
-                            after_e = sp[len('<ab>E.</ab>'):].strip()
+                            after_e = ep[len('<ab>E.</ab>'):].strip()
                             if after_e:
                                 split_lines.append(after_e)
-                        elif sp:
-                            split_lines.append(sp)
+                        elif ep:
+                            split_lines.append(ep)
             else:
                 split_lines.append(part)
 
