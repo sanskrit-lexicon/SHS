@@ -5,3 +5,4 @@
 __pycache__
 # temp files
 temp*
+*DS_Store
