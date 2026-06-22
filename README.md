@@ -15,6 +15,30 @@ Empirically a descendant of Wilson (WIL ⊆ SHS ≈ 0.953 by headword containmen
 | Path | Purpose |
 |---|---|
 | `issues/` | Per-issue working files |
+| `prefaces/` | Front-matter OCR (title + abbreviations) with EN + RU — see [Front matter](#front-matter-prefaces) below |
+
+## Front matter (`prefaces/`)
+
+Faithful OCR + translation of the dictionary's **front matter** — the **title page** and the **List of Abbreviations** — from the Cologne scans, with a Russian translation of each page. Source language is **English**, so the base per-page `.md` is the English edition and each page also has a `.ru.md`. Digitizer header/footer stamps are omitted.
+
+- Cologne source: <https://sanskrit-lexicon.uni-koeln.de/scans/csldev/csldoc/build/dictionaries/prefaces/shspref.html>
+- Consolidated editions: [prefaces/shspref_all.en.md](prefaces/shspref_all.en.md) · [prefaces/shspref_all.ru.md](prefaces/shspref_all.ru.md)
+- In-folder index: [prefaces/README.md](prefaces/README.md)
+- Imprint found: *First Edition, Calcutta 1900*, Calcutta Press (No. 8 Bowbazar Street), printed by Mookerjee & Co.; published by Ashu Bodha & Nitya Bodha Bhattacharyya.
+- The Abbreviations page includes a Devanāgarī **साङ्केतिकाः शब्दाः** table (सङ्केतः → सङ्केतबोधः); its left abbreviation column is cut off in the binding margin of the scan and is marked `[?]`.
+
+<details>
+<summary><strong>OCR run notes (2026-06-22)</strong> — cost, timing, and technical lessons</summary>
+
+Produced by the `/cologne-preface-ocr` skill (vision OCR + translation). Process retrospective, not part of the deliverable.
+
+**Method.** Done on the **main thread** (one dictionary at a time), not via parallel subagents: an earlier attempt that fanned out ~26 background OCR agents at once failed wholesale — long vision turns died on "Connection closed", the burst tripped a 403 auth/concurrency ceiling, and the flood of scan downloads temporarily **IP-blocked us at sanskrit-lexicon.uni-koeln.de**. Lesson: OCR these gently and sequentially, never in a large parallel burst.
+
+**Cost.** 2 pages, main-thread native-resolution cropping. The title page is large type (read from a thumbnail + native-res crops of the imprint); the Abbreviations page is dense (a two-column English list + a clipped/torn Devanāgarī table) and dominated the effort — ~30 native-res crop reads.
+
+**Technical lessons (reusable):** (1) The scans are 3540×4960 `.jpg`; crop to ≤1900 px and never upscale past 2000. (2) The leftmost Devanāgarī abbreviation column sits in the binding and is physically cut off — unrecoverable, marked `[?]` rather than invented. (3) A binding tear crosses the right English column and the Devanāgarī table; native crops still resolve the text. (4) Thumbnail reads mis-rendered "Parasmaipada"/"Penultimate" as "Paramaipada"/"Penultinate" — native crops corrected them.
+
+</details>
 
 ## Timeline
 
@@ -22,6 +46,7 @@ Empirically a descendant of Wilson (WIL ⊆ SHS ≈ 0.953 by headword containmen
 |---|---|
 | 2025 | Repository activity begins (first tracked issues) |
 | 2026-05 | Issue taxonomy, citation metadata, documentation |
+| 2026-06 | Front-matter OCR + EN/RU translation of the prefaces (`prefaces/`) |
 
 ## Projects & Milestones
 
