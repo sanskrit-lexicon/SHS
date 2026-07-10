@@ -1,6 +1,6 @@
 # SHS — *Shabda-Sagara* (Śabda-sāgara) (1900)
 
-_Created: 21-12-2025 · Last updated: 05-07-2026_
+_Created: 21-12-2025 · Last updated: 11-07-2026_
 
 Development and correction repository for **Kulapati Jibananda Vidyāsāgara's
 *Shabda-Sagara, or A Comprehensive Sanscrit-English Dictionary***, a
@@ -187,9 +187,10 @@ the base per-page `.md` is the English edition and each page also has a
 
 | Contributor | Commits |
 |---|---|
-| drdhaval2785 | 14 |
-| gasyoun (Mārcis Gasūns) | 2 |
+| gasyoun (Mārcis Gasūns) | 21 |
+| drdhaval2785 (Dr. Dhaval Patel) | 14 |
 | funderburkjim | 2 |
+| dependabot[bot] | 1 |
 
 ---
 
