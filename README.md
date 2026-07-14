@@ -15,7 +15,7 @@ Wilson's dictionary, restructured and re-abbreviated.
 ## Why this repo exists
 
 The canonical source text lives in
-[`csl-orig/v02/shs/shs.txt`](https://github.com/sanskrit-lexicon/csl-orig/blob/master/v02/shs/shs.txt)
+[`csl-orig/v02/shs/shs.txt`](https://github.com/sanskrit-lexicon/csl-orig/blob/main/v02/shs/shs.txt)
 and is never edited directly — this repo holds the correction work: scripts
 that reconcile discrepancies between the CDSL digitisation and an
 independently-typed alternate edition (the "AB" data, see
