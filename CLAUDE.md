@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 **SHS** is the development and correction repository for **Kulapati Jibananda Vidyāsāgara's *Shabda-Sagara, or A Comprehensive Sanscrit-English Dictionary***, a Sanskrit→English dictionary, within the [Cologne Digital Sanskrit Lexicon](https://www.sanskrit-lexicon.uni-koeln.de/) (CDSL).
 
-- **Canonical source text**: [`csl-orig/v02/shs/shs.txt`](https://github.com/sanskrit-lexicon/csl-orig/blob/master/v02/shs/shs.txt) (46,730 entries) — corrections are applied to that file, not stored here.
+- **Canonical source text**: [`csl-orig/v02/shs/shs.txt`](https://github.com/sanskrit-lexicon/csl-orig/blob/main/v02/shs/shs.txt) (46,730 entries) — corrections are applied to that file, not stored here.
 - This repository holds **development artifacts**: corrections, markup, comparison, and per-issue working files.
 - Empirically a descendant of Wilson (WIL ⊆ SHS ≈ 0.953 by headword containment) in the CDSL genealogy.
 
