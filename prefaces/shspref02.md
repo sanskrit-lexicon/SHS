@@ -1,3 +1,5 @@
+_Created: 22-06-2026 · Last updated: 05-09-2026_
+
 ---
 source_scan: shsabbr.jpg
 source_page: Abbreviations
@@ -49,3 +51,5 @@ source_url: https://sanskrit-lexicon.uni-koeln.de/scans/csldev/csldoc/build/dict
 | [?] | तुदादिगणीयः | द्विक० | द्विकर्मकः |
 | [?] | रुधादिगणीयः | गौरा० | गौरादित्वात् |
 | [?] | तनादिगणीयः | पृषो० | पृषोदरादित्वात् |
+
+_Dr. Mārcis Gasūns_

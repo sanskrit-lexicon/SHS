@@ -1,3 +1,5 @@
+_Created: 25-05-2026 · Last updated: 05-09-2026_
+
 git show b877f841176786cb8e13775ea8bc15bc23018419:v02/shs/shs.txt > ../../other-sanskrit-lexicon-repos/SHS/issues/issue1/temp_shs_0.txt as on 23 May 2026.
 
 shs_listed_abbrs.txt and shs-AB.txt obtained from https://github.com/sanskrit-lexicon/SHS/issues/1#issuecomment-4484766416
@@ -50,3 +52,5 @@ This document outlines the major structural differences between the AB format an
 
 - **CDSL Format** appears to be hard-wrapped at around 75-80 characters, which may break lines in the middle of sentences.
 - **AB Format** preserves more structured line breaks based on list items or semantic blocks.
+
+_Dr. Mārcis Gasūns_

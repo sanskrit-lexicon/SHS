@@ -1,6 +1,8 @@
+_Created: 22-06-2026 · Last updated: 05-09-2026_
+
 # Front matter — complete (English)
 
-Per-page files: `shsprefNN.md`. Index: [README.md](README.md).
+Per-page files: `shsprefNN.md`. Index: [README.md](https://github.com/sanskrit-lexicon/SHS/blob/main/prefaces/README.md).
 
 ## Contents
 
@@ -102,3 +104,5 @@ CALCUTTA PRESS, No. 8 Bowbazar Street, Calcutta.
 | [?] | तुदादिगणीयः | द्विक० | द्विकर्मकः |
 | [?] | रुधादिगणीयः | गौरा० | गौरादित्वात् |
 | [?] | तनादिगणीयः | पृषो० | पृषोदरादित्वात् |
+
+_Dr. Mārcis Gasūns_

@@ -1,3 +1,5 @@
+_Created: 22-06-2026 · Last updated: 05-09-2026_
+
 ---
 source_scan: shstit.jpg
 source_page: Title
@@ -46,3 +48,5 @@ CALCUTTA PRESS, No. 8 Bowbazar Street, Calcutta.
 *To be had from Pandit-Kulapati Jíbánanda Vidyá'sá'gara, B. A. Superintendent, free Sanskrit College, Calcutta.*
 
 [All rights reserved.]
+
+_Dr. Mārcis Gasūns_
