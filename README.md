@@ -19,7 +19,7 @@ The canonical source text lives in
 and is never edited directly — this repo holds the correction work: scripts
 that reconcile discrepancies between the CDSL digitisation and an
 independently-typed alternate edition (the "AB" data, see
-[Issue #1](#issue-1--reconciling-the-ab-edition) below), per-issue working
+[Issue #1](#issue-1-reconciling-the-ab-edition) below), per-issue working
 files, and a faithful OCR + bilingual translation of the printed front
 matter.
 
