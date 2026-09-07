@@ -36,7 +36,7 @@ Supports `new` (replace), `ins` (insert after), `del` (delete). All files UTF-8 
 
 ## Data format
 
-SHS entries use standard CDSL Sanskrit-lexicography markup. See [DATA_DICTIONARY.md](DATA_DICTIONARY.md) for the full tag reference.
+SHS entries use standard CDSL Sanskrit-lexicography markup. See DATA_DICTIONARY.md for the full tag reference.
 
 | Tag | Role |
 |---|---|
