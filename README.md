@@ -1,5 +1,7 @@
 # SHS — *Shabda-Sagara* (Śabda-sāgara) (1900)
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23151381.svg)](https://doi.org/10.5281/zenodo.23151381)
+
 _Created: 21-12-2025 · Last updated: 11-07-2026_
 
 Development and correction repository for **Kulapati Jibananda Vidyāsāgara's
